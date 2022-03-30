@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "Protos/google/api/annotations.proto";
+
+option csharp_namespace = "DeltatreGrpcService";
+
+package keywordsearch;
+
+// The Keywordsearch service definition.
+service Keywordsearch {
+  // Search a keyword
+  rpc SearchWord (WordModel) returns (WordReply){
+        option (google.api.http) = {
+          get: "/v1/searchword/{word}"
+        };
+  }
+
+  rpc UpdateKeyWord (WordSaveModel) returns (WordReply){
+    option (google.api.http) = {
+      post: "/v1/searchword/updatekeyword"
+      body: "*"
+    };
+    
+  }
+
+  rpc FindTopFiveKeyWord (ReturnTopFiveModel) returns (ReturnTopFiveReply){
+    option (google.api.http) = {
+      get: "/v1/searchword/topfive"
+    };
+  }
+}
+
+// The request message containing the user's name.
+message WordModel {
+  string word = 1;
+}
+
+// The response message containing the greetings.
+message WordReply { 
+  string result = 1;
+}
+
+message WordSaveModel {
+  repeated string word = 1;
+}
+
+message ReturnTopFiveModel {
+}
+
+message WordDict {
+	string word = 1;
+	double countSearch = 2;
+}
+
+message ReturnTopFiveReply {
+	repeated WordDict words = 1;
+}

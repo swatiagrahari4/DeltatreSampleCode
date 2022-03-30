@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "deltatregrpcservice",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "deltatregrpcservice": "StartDebugging",
+        "redisnew": "StartWithoutDebugging"
+      }
+    }
+  }
+}

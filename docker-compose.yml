@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  redisnew:
+        container_name: "redisnew"
+        image: redis
+        ports:
+            - "6379:6379"
+
+  deltatregrpcservice:
+    image: ${DOCKER_REGISTRY-}deltatregrpcservice
+    build:
+      context: .
+      dockerfile: DeltatreGrpcService/Dockerfile
+    ports:
+        - 8001:80
+        - 8002:443
+    depends_on: 
+        - "redisnew"
